@@ -42,10 +42,10 @@ from array import array
 import subprocess
 
 ##################################################################
-# ITA2 Look Up Table						 #
-# MSB on Right							 # 
-# TODO : Correct All values					 # 
-# for MSB on right 						 #
+# ITA2 Look Up Table						 
+# MSB on Right							  
+# TODO : Correct All values					  
+# for MSB on right 						 
 ##################################################################
 
 baudot = {'Q':[1,1,1,0,1], 'W':[1,0,0,1,1], 'E':[1,0,0,0,0],
