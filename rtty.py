@@ -41,6 +41,9 @@
 from array import array
 import subprocess
 
+import 	itertools
+import	string
+
 ##################################################################
 # ITA2 Look Up Table						 
 # MSB on Right							  
@@ -48,15 +51,17 @@ import subprocess
 # for MSB on right 						 
 ##################################################################
 
-baudot = {'Q':[1,1,1,0,1], 'W':[1,0,0,1,1], 'E':[1,0,0,0,0],
-		'R':[0,1,0,1,0], 'T':[1,0,0,0,0], 'Y':[1,0,1,0,1],
-		'U':[0,0,1,1,1], 'I':[0,0,1,1,0], 'O':[1,1,0,0,0], 
-		'P':[0,1,1,0,1], 'A':[0,0,0,1,1], 'S':[1,0,1,0,0], 
-		'D':[1,0,0,1,0], 'F':[0,1,1,0,1], 'G':[1,1,0,1,0], 
-		'H':[1,0,1,0,0], 'J':[0,1,0,1,1], 'K':[0,1,1,1,1], 
-		'L':[0,1,0,0,1], 'Z':[1,0,0,0,1], 'X':[1,1,1,0,1], 
-		'C':[0,1,1,1,0], 'V':[0,1,1,1,1], 'B':[1,1,0,0,1], 
-		'N':[0,1,1,0,0], 'M':[1,1,1,0,0]}
+# A, B, C, ..., Z
+chars_to_encode 	= string.ascii_uppercase
+
+# (0, 0, 0, 0, 0), (0, 0, 0, 0, 1), ... (1, 1, 1, 1, 1)
+five_bit_sequences 	= itertools.product((0, 1), repeat = 5)
+
+# Create the Baudot encoding.
+baudot = dict()
+for char, sequence in zip(chars_to_encode, five_bit_sequences):
+    
+    baudot[char] = list(sequence)
 
 space = [0,0,1,0,0]
 
